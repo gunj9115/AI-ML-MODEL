@@ -9,9 +9,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import mean_absolute_error, r2_score, classification_report
 import pickle
 
-# ---------------------------
-# ⚙️ Module 1: Battery Health Predictor
-# ---------------------------
+# Module 1: Battery Health Predictor
+
 np.random.seed(42)
 battery_data = pd.DataFrame({
     'cycles': np.random.randint(100, 1000, 500),
@@ -59,9 +58,7 @@ plt.grid(True, axis='y', linestyle='--', alpha=0.5)
 plt.tight_layout()
 plt.show()
 
-# ---------------------------
-# ⚡ Module 2: Solder Fault Detector
-# ---------------------------
+# Module 2: Solder Fault Detector
 np.random.seed(101)
 fault_data = pd.DataFrame({
     'voltage_V': np.round(np.random.normal(5, 0.8, 300), 2),
@@ -84,9 +81,8 @@ X_train2, X_test2, y_train2, y_test2 = train_test_split(X2, y2, test_size=0.2, r
 clf_fault = RandomForestClassifier(n_estimators=100, random_state=42)
 clf_fault.fit(X_train2, y_train2)
 
-# ---------------------------
-# 🧠 Module 3: Component Status Classifier
-# ---------------------------
+#  Module 3: Component Status Classifier
+
 np.random.seed(303)
 status_data = pd.DataFrame({
     'voltage_V': np.round(np.random.normal(5.0, 0.5, 300), 2),
@@ -111,14 +107,14 @@ X_train3, X_test3, y_train3, y_test3 = train_test_split(X3, y3, test_size=0.2, r
 clf_status = RandomForestClassifier(n_estimators=100, random_state=42)
 clf_status.fit(X_train3, y_train3)
 
-# ---------------------------
-# 🌐 Streamlit Interface
-# ---------------------------
-st.title("🧠 IntelliCheck – Component Status Predictor")
+
+# Streamlit Interface
+
+st.title("IntelliCheck – Component Status Predictor")
 
 module = st.selectbox("Select Diagnostic Module:", ["Battery Health Predictor","Component Status Classifier", "Fault Detector"])
 if module == "Battery Health Predictor":
-    st.subheader("🔋 Enter Battery Parameters")
+    st.subheader("Enter Battery Parameters")
 
     cycles = st.number_input("Charge Cycles", 0, 2000, 500)
     temperature = st.number_input("Temperature (°C)", 0.0, 100.0, 35.0)
